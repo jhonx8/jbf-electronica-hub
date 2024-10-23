@@ -1,11 +1,52 @@
 import { Link, Outlet } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, ShoppingBag, Heart, Phone } from "lucide-react";
+import { Search, ShoppingBag, Heart, Phone, Laptop, Home, Shirt, Dress, Shoe, Sparkles } from "lucide-react";
 import { useState } from "react";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 export const MainLayout = () => {
   const [searchQuery, setSearchQuery] = useState("");
+
+  const categories = [
+    {
+      title: "Lingerie",
+      icon: <Sparkles className="h-4 w-4" />,
+      subcategories: ["Conjuntos", "Plus Size", "Moda Íntima", "Pijamas", "Promoções"],
+    },
+    {
+      title: "Eletrônicos",
+      icon: <Laptop className="h-4 w-4" />,
+      subcategories: ["Smartphones", "Tablets", "Notebooks", "Acessórios"],
+    },
+    {
+      title: "Eletrodomésticos",
+      icon: <Home className="h-4 w-4" />,
+      subcategories: ["Geladeiras", "Fogões", "Máquinas de Lavar", "Microondas"],
+    },
+    {
+      title: "Roupas Masculinas",
+      icon: <Shirt className="h-4 w-4" />,
+      subcategories: ["Camisas", "Calças", "Bermudas", "Acessórios"],
+    },
+    {
+      title: "Roupas Femininas",
+      icon: <Dress className="h-4 w-4" />,
+      subcategories: ["Vestidos", "Blusas", "Calças", "Saias"],
+    },
+    {
+      title: "Calçados",
+      icon: <Shoe className="h-4 w-4" />,
+      subcategories: ["Masculino", "Feminino", "Infantil", "Esportivo"],
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -94,18 +135,36 @@ export const MainLayout = () => {
           </div>
 
           {/* Navigation */}
-          <nav className="flex items-center gap-6 h-12 text-sm">
-            {["Lingerie", "Conjuntos", "Plus Size", "Moda Íntima", "Pijamas", "Promoções"].map((item) => (
-              <Link
-                key={item}
-                to={`/${item.toLowerCase().replace(" ", "-")}`}
-                className="relative group hover:text-primary transition-colors"
-              >
-                {item}
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform"></span>
-              </Link>
-            ))}
-          </nav>
+          <NavigationMenu className="h-12">
+            <NavigationMenuList className="gap-2">
+              {categories.map((category) => (
+                <NavigationMenuItem key={category.title}>
+                  <NavigationMenuTrigger className="bg-transparent hover:bg-primary/5 data-[state=open]:bg-primary/5">
+                    <span className="flex items-center gap-2">
+                      {category.icon}
+                      {category.title}
+                    </span>
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                      {category.subcategories.map((subcategory) => (
+                        <li key={subcategory}>
+                          <NavigationMenuLink asChild>
+                            <Link
+                              to={`/${category.title.toLowerCase()}/${subcategory.toLowerCase().replace(" ", "-")}`}
+                              className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                            >
+                              <div className="text-sm font-medium leading-none">{subcategory}</div>
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
         </div>
       </header>
 
