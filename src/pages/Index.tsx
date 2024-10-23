@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ProductGrid } from "@/components/ProductGrid";
+import { BannerCarousel } from "@/components/BannerCarousel";
+import { BrandsSection } from "@/components/BrandsSection";
 
 const Index = () => {
   const categories = [
@@ -46,6 +48,13 @@ const Index = () => {
 
   return (
     <>
+      {/* Banner Carousel */}
+      <section className="py-8">
+        <div className="container mx-auto px-4">
+          <BannerCarousel />
+        </div>
+      </section>
+
       {/* Categories */}
       <section className="py-8 bg-muted border-y border-primary/20">
         <div className="container mx-auto px-4">
@@ -76,6 +85,17 @@ const Index = () => {
             <span className="absolute inset-0 bg-primary/20 blur-lg opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
           </h2>
           <ProductGrid products={featuredProducts} />
+        </div>
+      </section>
+
+      {/* Brands */}
+      <section className="py-8 bg-muted/50 border-y border-primary/20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-6 text-primary relative group inline-block">
+            <span className="relative z-10">Nossas Marcas</span>
+            <span className="absolute inset-0 bg-primary/20 blur-lg opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
+          </h2>
+          <BrandsSection />
         </div>
       </section>
     </>
