@@ -1,40 +1,101 @@
 import { Link, Outlet } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { Search, ShoppingBag, Heart, Phone } from "lucide-react";
 import { useState } from "react";
+import { MainNavigation } from "@/components/navigation/MainNavigation";
 
 export const MainLayout = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-primary/20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <Link to="/" className="text-3xl font-bold text-primary relative group">
-              <span className="relative z-10">JBF Vendas</span>
-              <span className="absolute inset-0 bg-primary/20 blur-lg group-hover:bg-primary/30 transition-all duration-300"></span>
-            </Link>
-            <div className="flex items-center gap-2 w-full md:w-1/2">
-              <Input
-                type="text"
-                placeholder="Buscar produtos..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full border-primary/20 focus-visible:ring-primary/50"
-              />
-              <Button size="icon" variant="outline" className="border-primary/20 hover:border-primary/50">
-                <Search className="h-4 w-4" />
+      {/* Top Banner */}
+      <div className="bg-primary/90 text-white py-2 px-4 text-center animate-pulse">
+        <p className="text-sm">Frete Grátis em compras acima de R$ 299,99 🎁</p>
+      </div>
+
+      {/* Info Bar */}
+      <div className="bg-muted/80 border-b border-primary/10 text-sm">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center h-10">
+            <div className="flex items-center gap-4">
+              <a href="tel:+5511999999999" className="flex items-center gap-1 hover:text-primary transition-colors">
+                <Phone className="h-3 w-3" />
+                (11) 99999-9999
+              </a>
+              <span className="text-primary/30">|</span>
+              <Link to="/rastreamento" className="hover:text-primary transition-colors">Rastrear Pedido</Link>
+            </div>
+            <div className="flex items-center gap-4">
+              <Button variant="link" className="text-sm p-0 h-auto hover:text-primary">
+                Seja Revendedor(a)
+              </Button>
+              <span className="text-primary/30">|</span>
+              <Button variant="link" className="text-sm p-0 h-auto hover:text-primary">
+                Catálogo 2024
               </Button>
             </div>
-            <nav className="flex items-center gap-4">
-              <Button variant="ghost" className="hover:bg-primary/10">Login</Button>
-              <Button className="bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20">
-                Carrinho (0)
-              </Button>
-            </nav>
           </div>
+        </div>
+      </div>
+
+      {/* Main Header */}
+      <header className="border-b border-primary/20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full shadow-lg shadow-primary/5">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <Link to="/" className="relative group">
+              <h1 className="text-3xl font-bold text-primary">
+                <span className="relative z-10">JBF Lingerie</span>
+                <span className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></span>
+              </h1>
+              <span className="text-xs text-muted-foreground">Atacado & Varejo</span>
+            </Link>
+
+            {/* Search */}
+            <div className="flex-1 max-w-xl px-8">
+              <div className="relative group">
+                <Input
+                  type="text"
+                  placeholder="O que você procura?"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-muted/50 border-primary/20 focus-visible:ring-primary/30 pr-10"
+                />
+                <Button 
+                  size="icon" 
+                  variant="ghost" 
+                  className="absolute right-0 top-0 h-full hover:bg-transparent"
+                >
+                  <Search className="h-4 w-4 text-primary/60" />
+                </Button>
+                <span className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-md blur-md"></span>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="flex items-center gap-4">
+              <Button variant="ghost" size="icon" className="relative group">
+                <Heart className="h-5 w-5" />
+                <span className="absolute -top-1 -right-1 h-4 w-4 bg-primary text-[10px] text-white rounded-full flex items-center justify-center">0</span>
+                <span className="absolute inset-0 bg-primary/10 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 blur-md"></span>
+              </Button>
+              
+              <Button variant="ghost" size="icon" className="relative group">
+                <ShoppingBag className="h-5 w-5" />
+                <span className="absolute -top-1 -right-1 h-4 w-4 bg-primary text-[10px] text-white rounded-full flex items-center justify-center">0</span>
+                <span className="absolute inset-0 bg-primary/10 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 blur-md"></span>
+              </Button>
+
+              <Button className="bg-primary/90 hover:bg-primary shadow-lg shadow-primary/20 transition-all hover:shadow-primary/40">
+                Entrar
+              </Button>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <MainNavigation />
         </div>
       </header>
 
@@ -42,6 +103,7 @@ export const MainLayout = () => {
         <Outlet />
       </main>
 
+      {/* Footer */}
       <footer className="bg-muted py-8 mt-8 border-t border-primary/20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
