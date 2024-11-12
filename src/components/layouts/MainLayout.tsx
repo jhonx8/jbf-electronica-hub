@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, ShoppingBag, Heart, Phone } from "lucide-react";
+import { Search, ShoppingBag, Heart, Phone, Instagram, Facebook, Twitter, Youtube, TiktokIcon } from "lucide-react";
 import { useState } from "react";
 import { MainNavigation } from "@/components/navigation/MainNavigation";
 
@@ -104,34 +104,55 @@ export const MainLayout = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-muted py-8 mt-8 border-t border-primary/20">
+      <footer className="bg-muted py-12 mt-8 border-t border-primary/20">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="font-bold mb-4 text-primary">Sobre a JBF Vendas</h3>
+              <h3 className="font-bold mb-4 text-primary">Sobre a JBF Lingerie</h3>
               <p className="text-sm text-muted-foreground">
-                Sua loja online completa para eletrônicos, moda e muito mais.
+                Sua loja online completa de lingerie com as melhores marcas e preços.
               </p>
             </div>
             <div>
               <h3 className="font-bold mb-4 text-primary">Contato</h3>
               <p className="text-sm text-muted-foreground">
-                Email: contato@jbfvendas.com
+                Email: contato@jbflingerie.com
                 <br />
-                Telefone: (11) 1234-5678
+                Telefone: (11) 99999-9999
               </p>
             </div>
             <div>
+              <h3 className="font-bold mb-4 text-primary">Links Úteis</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link to="/rastreamento" className="hover:text-primary transition-colors">Rastrear Pedido</Link></li>
+                <li><Link to="/revendedor" className="hover:text-primary transition-colors">Seja Revendedor(a)</Link></li>
+                <li><Link to="/catalogo" className="hover:text-primary transition-colors">Catálogo 2024</Link></li>
+              </ul>
+            </div>
+            <div>
               <h3 className="font-bold mb-4 text-primary">Redes Sociais</h3>
-              <div className="flex gap-4">
-                <Button variant="outline" size="sm" className="border-primary/20 hover:border-primary/50">
-                  Instagram
+              <div className="flex flex-wrap gap-4">
+                <Button variant="outline" size="icon" className="rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+                  <Instagram className="h-4 w-4" />
                 </Button>
-                <Button variant="outline" size="sm" className="border-primary/20 hover:border-primary/50">
-                  Facebook
+                <Button variant="outline" size="icon" className="rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+                  <Facebook className="h-4 w-4" />
+                </Button>
+                <Button variant="outline" size="icon" className="rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+                  <Twitter className="h-4 w-4" />
+                </Button>
+                <Button variant="outline" size="icon" className="rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+                  <Youtube className="h-4 w-4" />
+                </Button>
+                <Button variant="outline" size="icon" className="rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+                  <TiktokIcon className="h-4 w-4" />
                 </Button>
               </div>
+              <p className="mt-4 text-xs text-muted-foreground">Siga-nos nas redes sociais para novidades e promoções!</p>
             </div>
+          </div>
+          <div className="mt-8 pt-8 border-t border-primary/10 text-center text-sm text-muted-foreground">
+            <p>© 2024 JBF Lingerie. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>
