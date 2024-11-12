@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, ShoppingBag, Heart, Phone, Instagram, Facebook, Youtube } from "lucide-react";
+import { Search, ShoppingBag, Heart, Phone, Instagram, Facebook, Youtube, Mail, MapPin } from "lucide-react";
 import { useState } from "react";
 import { MainNavigation } from "@/components/navigation/MainNavigation";
 
@@ -108,25 +108,38 @@ export const MainLayout = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="font-bold mb-4 text-primary">Sobre a JBF Lingerie</h3>
-              <p className="text-sm text-muted-foreground">
-                Sua loja online completa de lingerie com as melhores marcas e preços.
-              </p>
+              <h3 className="font-bold mb-4 text-primary">Links Rápidos</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link to="/sobre" className="hover:text-primary transition-colors">Sobre Nós</Link></li>
+                <li><Link to="/produtos" className="hover:text-primary transition-colors">Produtos</Link></li>
+                <li><Link to="/carrinho" className="hover:text-primary transition-colors">Carrinho</Link></li>
+                <li><Link to="/contato" className="hover:text-primary transition-colors">Contato</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold mb-4 text-primary">Ajuda & Suporte</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><Link to="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
+                <li><Link to="/envio" className="hover:text-primary transition-colors">Envio</Link></li>
+                <li><Link to="/devolucoes" className="hover:text-primary transition-colors">Devoluções</Link></li>
+                <li><Link to="/privacidade" className="hover:text-primary transition-colors">Privacidade</Link></li>
+              </ul>
             </div>
             <div>
               <h3 className="font-bold mb-4 text-primary">Contato</h3>
-              <p className="text-sm text-muted-foreground">
-                Email: contato@jbflingerie.com
-                <br />
-                Telefone: (11) 99999-9999
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold mb-4 text-primary">Links Úteis</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/rastreamento" className="hover:text-primary transition-colors">Rastrear Pedido</Link></li>
-                <li><Link to="/revendedor" className="hover:text-primary transition-colors">Seja Revendedor(a)</Link></li>
-                <li><Link to="/catalogo" className="hover:text-primary transition-colors">Catálogo 2024</Link></li>
+                <li className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4" />
+                  São Paulo, SP - Brasil
+                </li>
+                <li className="flex items-center gap-2">
+                  <Phone className="h-4 w-4" />
+                  (11) 9999-9999
+                </li>
+                <li className="flex items-center gap-2">
+                  <Mail className="h-4 w-4" />
+                  contato@mundojbf.com
+                </li>
               </ul>
             </div>
             <div>
@@ -164,11 +177,16 @@ export const MainLayout = () => {
                   </svg>
                 </Button>
               </div>
-              <p className="mt-4 text-xs text-muted-foreground">Siga-nos nas redes sociais para novidades e promoções!</p>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-primary/10 text-center text-sm text-muted-foreground">
-            <p>© 2024 JBF Lingerie. Todos os direitos reservados.</p>
+          <div className="mt-8 pt-8 border-t border-primary/10">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+              <p>© 2024 JBF. Todos os direitos reservados.</p>
+              <div className="flex gap-4">
+                <Link to="/termos" className="hover:text-primary transition-colors">Termos de Uso</Link>
+                <Link to="/privacidade" className="hover:text-primary transition-colors">Política de Privacidade</Link>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
